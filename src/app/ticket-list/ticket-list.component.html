@@ -1,0 +1,9 @@
+<app-ticket
+  *ngFor="let ticket of tickets"
+  [ticket]="ticket"
+  (click)="openTicketModal(ticket)"
+></app-ticket>
+<app-view-ticket
+  *ngIf="showTicket"
+  [currentTicket]="currentTicket"
+></app-view-ticket>

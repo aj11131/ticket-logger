@@ -1,0 +1,23 @@
+mat-card {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 30vh;
+  left: 20vh;
+  width: 60vw;
+  z-index: 100;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 50;
+}
+
+::placeholder {
+  color: black;
+}

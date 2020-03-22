@@ -1,0 +1,25 @@
+<mat-card>
+  <mat-form-field [floatLabel]="'always'">
+    <mat-label></mat-label>
+    <input
+      matNativeControl
+      placeholder="Subject"
+      value="{{ currentTicket.title }}"
+    />
+  </mat-form-field>
+  <mat-form-field [floatLabel]="'always'">
+    <textarea matNativeControl value="{{ currentTicket.message }}"></textarea>
+  </mat-form-field>
+  <div>
+    <button mat-raised-button mat-button-base color="primary">Save</button>
+    <button
+      mat-raised-button
+      mat-button-base
+      color="accent"
+      (click)="closeTicketModal()"
+    >
+      Cancel
+    </button>
+  </div>
+</mat-card>
+<div class="backdrop"></div>

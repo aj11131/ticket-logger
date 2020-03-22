@@ -1,0 +1,3 @@
+{
+  "mongoURI": "mongodb+srv://aj11131:howdy@ticket-logger-jubzi.mongodb.net/test?retryWrites=true&w=majority"
+}
