@@ -1,11 +1,14 @@
 const express = require("express");
 const router = express.Router();
 
+const Tech = require("../models/Tech");
+
 // @route   GET api/techs
 // @desc    Get all techs
 // @access  Public
-router.get("/", (req, res) => {
-  res.send("Get all techs");
+router.get("/", async (req, res) => {
+  const techs = await Tech.find();
+  res.send(techs);
 });
 
 // @route   POST api/techs
@@ -15,14 +18,11 @@ router.post("/", async (req, res) => {
   try {
     let tech;
 
-    const {} = req.body;
+    const { firstName, lastName } = req.body;
 
     tech = new Tech({
-      title,
-      message,
-      priority,
-      tech,
-      date
+      firstName,
+      lastName
     });
 
     await tech.save();

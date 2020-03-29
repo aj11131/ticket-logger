@@ -1,4 +1,5 @@
 export interface Ticket {
+  _id: string;
   title: string;
   message: string;
   priority: string;

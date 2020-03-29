@@ -9,8 +9,8 @@ import { Subscription } from "rxjs";
   styleUrls: ["./ticket-list.component.css"]
 })
 export class TicketListComponent implements OnInit, OnDestroy {
-  tickets: any;
-  showTicket;
+  tickets: Ticket;
+  showTicket: boolean;
   currentTicket: Ticket;
   showSubscription: Subscription;
   ticketSubscription: Subscription;
@@ -18,14 +18,23 @@ export class TicketListComponent implements OnInit, OnDestroy {
   constructor(private ticketService: TicketService) {}
 
   ngOnInit() {
+    this.currentTicket = {
+      _id: "",
+      title: "",
+      message: "",
+      priority: "",
+      tech: "",
+      date: ""
+    };
     this.getTickets();
+    this.subscribeToCurrentTicket();
     this.subscribeToShowTicketToggle();
     this.showTicket = this.ticketService.showTicketModal;
   }
 
   ngOnDestroy() {
-    this.showSubscription.unsubscribe();
     this.ticketSubscription.unsubscribe();
+    this.showSubscription.unsubscribe();
   }
 
   subscribeToShowTicketToggle() {
@@ -45,6 +54,6 @@ export class TicketListComponent implements OnInit, OnDestroy {
   }
 
   openTicketModal(ticket?: Ticket) {
-    this.currentTicket = this.ticketService.openTicketModal(ticket);
+    this.ticketService.openTicketModal(ticket);
   }
 }

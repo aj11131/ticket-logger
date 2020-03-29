@@ -1,11 +1,14 @@
 mat-card {
-  display: flex;
-  flex-direction: column;
   position: fixed;
   top: 30vh;
   left: 20vh;
   width: 60vw;
   z-index: 100;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
 }
 
 .backdrop {
@@ -18,6 +21,17 @@ mat-card {
   z-index: 50;
 }
 
-::placeholder {
-  color: black;
+mat-select {
+  margin: 1rem 0 2rem 0;
+}
+
+mat-radio-button {
+  margin-right: 2rem;
+  margin-bottom: 2rem;
+}
+
+.card-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
