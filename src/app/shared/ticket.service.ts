@@ -11,6 +11,7 @@ export class TicketService {
   backendURL = environment.backendURL;
   showTicketModal = false;
   ticket: Ticket;
+  tickets: any;
   isNewTicket: boolean;
   emptyTicket = {
     _id: "",
@@ -48,25 +49,31 @@ export class TicketService {
     this.toggleShowTicketModalSubject.next(this.showTicketModal);
   }
 
-  getTickets() {
-    return this.http.get<Ticket>(`${this.backendURL}/tickets`).toPromise();
-  }
-
-  createTicket(ticket: Ticket) {
-    return this.http
-      .post<Ticket>(`${this.backendURL}/tickets`, ticket)
+  async getTickets() {
+    this.tickets = await this.http
+      .get<Ticket>(`${this.backendURL}/tickets`)
       .toPromise();
   }
 
-  deleteTicket(ticketId: string) {
+  createTicket(ticket: Ticket) {
+    this.tickets.push(ticket);
     return this.http
-      .delete(`${this.backendURL}/tickets/${ticketId}`, {
+      .post(`${this.backendURL}/tickets`, ticket, {
         responseType: "text"
       })
       .toPromise();
   }
 
-  addTicketToUI(ticket: Ticket, ticketArr: Ticket[]) {
-    ticketArr.push(ticket);
+  deleteTicket(ticketId: string) {
+    const index = this.tickets.findIndex(
+      (ticket: Ticket) => ticket._id === ticketId
+    );
+    this.tickets.splice(index, 1);
+    console.log(this.tickets);
+    return this.http
+      .delete(`${this.backendURL}/tickets/${ticketId}`, {
+        responseType: "text"
+      })
+      .toPromise();
   }
 }

@@ -50,7 +50,8 @@ export class TicketListComponent implements OnInit, OnDestroy {
   }
 
   async getTickets() {
-    this.tickets = await this.ticketService.getTickets();
+    await this.ticketService.getTickets();
+    this.tickets = this.ticketService.tickets;
   }
 
   openTicketModal(ticket?: Ticket) {
